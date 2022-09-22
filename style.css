@@ -6,12 +6,15 @@ body {
     font-family: monospace;
     font-size: large;
     text-align: center;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 
 .title {
 
     display: flex;
     justify-content: center;
+    font-family: monospace;
 }
 
 .td {
