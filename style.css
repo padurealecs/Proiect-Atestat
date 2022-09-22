@@ -1,0 +1,40 @@
+body {
+    background-color: greenyellow;
+}
+
+.definition {
+    font-family: monospace;
+    font-size: large;
+    text-align: center;
+}
+
+.title {
+
+    display: flex;
+    justify-content: center;
+}
+
+.td {
+    border: 1px solid black;
+    width: 15px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.th {
+    border: 1px solid black;
+    text-align: center;
+    font-family: monospace;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+#tabel {
+    border: 1px solid black;
+    height: 100px;
+    width: 500px
+}
