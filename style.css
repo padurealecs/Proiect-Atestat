@@ -37,7 +37,8 @@ body {
 }
 
 #tabel {
+    border-collapse: collapse;
     border: 1px solid black;
     height: 100px;
-    width: 500px
+    width: 429px
 }
