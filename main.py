@@ -136,16 +136,21 @@ def options(screen):
 
     if mouse_is_pressed == True:
         if back_button.checkForInput(mouse_pos) == True:
-            main_menu(screen)
+            #main_menu(screen)
             whats_going_on = 'main_menu'
+
         for x in list_of_colors:
             if color1_button[x].checkForInput(mouse_pos):
                 color2 = x
+            if color2_button[x].checkForInput(mouse_pos):
+                color1 = x
 
     for x in list_of_colors:
         if not x == color2:
             color2_button[x].draw(screen)
-        color1_button[x].draw(screen)
+
+        if not x == color1:
+            color1_button[x].draw(screen)
 
 
 def play(screen):
@@ -199,6 +204,7 @@ def play(screen):
         if back_button.checkForInput(mouse_pos) == True:
             main_menu(screen)
             whats_going_on = 'main_menu'
+
 
 
 def quit():
