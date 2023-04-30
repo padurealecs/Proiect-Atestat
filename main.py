@@ -92,38 +92,60 @@ def options(screen):
 
 
     #if color1_button.checkForInput(mouse_pos) == True:
-    blue_color_img = pygame.image.load("Color_Options/blue_color.png").convert_alpha()
-    brown_color_img = pygame.image.load("Color_Options/brown_color.png").convert_alpha()
-    green_color_img = pygame.image.load("Color_Options/green_color.png").convert_alpha()
-    pink_color_img = pygame.image.load("Color_Options/pink_color.png").convert_alpha()
-    purple_color_img = pygame.image.load("Color_Options/purple_color.png").convert_alpha()
-    red_color_img = pygame.image.load("Color_Options/red_color.png").convert_alpha()
-    yellow_color_img = pygame.image.load("Color_Options/yellow_color.png").convert_alpha()
+    blue_color1_img = pygame.image.load("Color_Options/blue_color.png").convert_alpha()
+    brown_color1_img = pygame.image.load("Color_Options/brown_color.png").convert_alpha()
+    green_color1_img = pygame.image.load("Color_Options/green_color.png").convert_alpha()
+    pink_color1_img = pygame.image.load("Color_Options/pink_color.png").convert_alpha()
+    purple_color1_img = pygame.image.load("Color_Options/purple_color.png").convert_alpha()
+    red_color1_img = pygame.image.load("Color_Options/red_color.png").convert_alpha()
+    yellow_color1_img = pygame.image.load("Color_Options/yellow_color.png").convert_alpha()
+    orange_color1_img = pygame.image.load("Color_Options/orange_color.png").convert_alpha()
+    
+    
+    blue_color2_img = pygame.image.load("Color_Options/blue_color.png").convert_alpha()
+    brown_color2_img = pygame.image.load("Color_Options/brown_color.png").convert_alpha()
+    green_color2_img = pygame.image.load("Color_Options/green_color.png").convert_alpha()
+    pink_color2_img = pygame.image.load("Color_Options/pink_color.png").convert_alpha()
+    purple_color2_img = pygame.image.load("Color_Options/purple_color.png").convert_alpha()
+    red_color2_img = pygame.image.load("Color_Options/red_color.png").convert_alpha()
+    yellow_color2_img = pygame.image.load("Color_Options/yellow_color.png").convert_alpha()
+    orange_color2_img = pygame.image.load("Color_Options/orange_color.png").convert_alpha()
+    
+    list_of_colors = ['blue', 'brown', 'green', 'pink', 'purple', 'red', 'yellow', 'orange']
+    color1_button = {x:0 for x in list_of_colors}
+    color2_button = {x:0 for x in list_of_colors}
 
-    list_of_colors = ['blue', 'brown', 'green', 'pink', 'purple', 'red', 'yellow']
-    color_button = {x:0 for x in list_of_colors}
-
-    color_button['blue'] = buttons.Button(300, 425, blue_color_img, 5)
-    color_button['brown'] = buttons.Button(350, 425, brown_color_img, 5)
-    color_button['green'] = buttons.Button(400, 425, green_color_img, 5)
-    color_button['pink'] = buttons.Button(450, 425, pink_color_img, 5)
-    color_button['purple'] = buttons.Button(300, 475, purple_color_img, 5)
-    color_button['red'] = buttons.Button(350, 475, red_color_img, 5)
-    color_button['yellow'] = buttons.Button(400, 475, yellow_color_img, 5)
-
+    color1_button['blue'] = buttons.Button(300, 425, blue_color1_img, 5)
+    color1_button['brown'] = buttons.Button(350, 425, brown_color1_img, 5)
+    color1_button['green'] = buttons.Button(400, 425, green_color1_img, 5)
+    color1_button['pink'] = buttons.Button(450, 425, pink_color1_img, 5)
+    color1_button['purple'] = buttons.Button(300, 475, purple_color1_img, 5)
+    color1_button['red'] = buttons.Button(350, 475, red_color1_img, 5)
+    color1_button['yellow'] = buttons.Button(400, 475, yellow_color1_img, 5)
+    color1_button['orange'] = buttons.Button(450, 475, orange_color1_img, 5)
+    
+    color2_button['blue'] = buttons.Button(670, 425, blue_color2_img, 5)
+    color2_button['brown'] = buttons.Button(720, 425, brown_color2_img, 5)
+    color2_button['green'] = buttons.Button(770, 425, green_color2_img, 5)
+    color2_button['pink'] = buttons.Button(820, 425, pink_color2_img, 5)
+    color2_button['purple'] = buttons.Button(670, 475, purple_color2_img, 5)
+    color2_button['red'] = buttons.Button(720, 475, red_color2_img, 5)
+    color2_button['yellow'] = buttons.Button(770, 475, yellow_color2_img, 5)
+    color2_button['orange'] = buttons.Button(820, 475, orange_color2_img, 5)
+    
 
     if mouse_is_pressed == True:
         if back_button.checkForInput(mouse_pos) == True:
             main_menu(screen)
             whats_going_on = 'main_menu'
         for x in list_of_colors:
-            if color_button[x].checkForInput(mouse_pos):
-                color1 = x
+            if color1_button[x].checkForInput(mouse_pos):
+                color2 = x
 
     for x in list_of_colors:
-        if not x == color1:
-            color_button[x].draw(screen)
-
+        if not x == color2:
+            color2_button[x].draw(screen)
+        color1_button[x].draw(screen)
 
 
 def play(screen):
