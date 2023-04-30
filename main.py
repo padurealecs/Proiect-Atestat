@@ -75,16 +75,21 @@ def options(screen):
     
     color1_img = pygame.image.load("Buttons/color1.png").convert_alpha()
     color2_img = pygame.image.load("Buttons/color2.png").convert_alpha()
+    back_img = pygame.image.load("Buttons/back.png").convert_alpha()
     
     color1_button = buttons.Button(200, 325, color1_img, 5)
     color2_button = buttons.Button(570, 325, color2_img, 5)
+    back_button = buttons.Button(1000,750, back_img, 3)
     
     color1_button.draw(screen)
     color2_button.draw(screen)
-
-
-
-
+    back_button.draw(screen)
+    
+    if mouse_is_pressed == True:
+        if back_button.checkForInput(mouse_pos) == True:
+            main_menu(screen)
+            whats_going_on = 'main_menu'
+    
 def play(screen):
     global whats_going_on
     global mouse_is_pressed
@@ -104,6 +109,7 @@ def play(screen):
     level8_img = pygame.image.load("Levels/level8.png").convert_alpha()
     level9_img = pygame.image.load("Levels/level9.png").convert_alpha()
     level10_img = pygame.image.load("Levels/level10.png").convert_alpha()
+    back_img = pygame.image.load("Buttons/back.png").convert_alpha()
     
     levels_button = buttons.Button(20, 90, levels_img, 5)
     level1_button = buttons.Button(120, 300, level1_img, 3)
@@ -116,6 +122,7 @@ def play(screen):
     level8_button = buttons.Button(520, 420, level8_img, 3)
     level9_button = buttons.Button(720, 420, level9_img, 3)
     level10_button = buttons.Button(920, 420, level10_img, 3)
+    back_button = buttons.Button(1000,750, back_img, 3)
     
     levels_button.draw(screen)
     level1_button.draw(screen)
@@ -128,6 +135,12 @@ def play(screen):
     level8_button.draw(screen)
     level9_button.draw(screen)
     level10_button.draw(screen)
+    back_button.draw(screen)
+    
+    if mouse_is_pressed == True:
+        if back_button.checkForInput(mouse_pos) == True:
+            main_menu(screen)
+            whats_going_on = 'main_menu'
     
     
 def quit():
@@ -146,10 +159,11 @@ def main_menu(screen):
     options_img = pygame.image.load("Buttons/options_button.png").convert_alpha()
     quit_img = pygame.image.load("Buttons/quit_button.png").convert_alpha()
 
+
     play_button = buttons.Button(470,180, play_img, 5)
     options_button = buttons.Button(470,360,options_img, 5)
     quit_button = buttons.Button(470,540,quit_img,5)
-
+        
     mouse = pygame.mouse.get_pos()
     
     play_button.draw(screen)
@@ -228,6 +242,8 @@ def main():
     #make game loop
     running = True
     while running:
+        
+        pygame.display.set_caption("Hackenbush")
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
