@@ -2,8 +2,9 @@ import pygame
 from vertex import *
 from edge import *
 import constants
-import presets.graph
+#import presets.graph
 import random
+import buttons
 
 #global variables
 graph_configured = False
@@ -68,18 +69,29 @@ def main_menu(screen):
     
     global whats_going_on
     global mouse_is_pressed
+    
+    mouse_pos = pygame.mouse.get_pos()
 
     screen.fill('#2e6585')
+    
+    play_img = pygame.image.load("Buttons/play_button.png").convert_alpha() 
+    options_img = pygame.image.load("Buttons/options_button.png").convert_alpha()
+    quit_img = pygame.image.load("Buttons/quit_button.png").convert_alpha()
+
+    play_button = buttons.Button(470,180, play_img, 5)
+    options_button = buttons.Button(470,360,options_img, 5)
+    quit_button = buttons.Button(470,540,quit_img,5)
 
     mouse = pygame.mouse.get_pos()
-
-    if mouse[0] >= constants.SCREEN_WIDTH / 2 - 100 and mouse[0] <= constants.SCREEN_WIDTH / 2 + 100 and mouse[1] >= constants.SCREEN_HEIGHT / 2 - 50 and mouse[1] <= constants.SCREEN_HEIGHT / 2 + 50:
-        pygame.draw.rect(screen, '#f68080', pygame.Rect(constants.SCREEN_WIDTH / 2 - 100, constants.SCREEN_HEIGHT / 2 - 50, 200, 100))
-    else:
-        pygame.draw.rect(screen, '#e54040', pygame.Rect(constants.SCREEN_WIDTH / 2 - 100, constants.SCREEN_HEIGHT / 2 - 50, 200, 100))
-
-    if mouse_is_pressed and mouse[0] >= constants.SCREEN_WIDTH / 2 - 100 and mouse[0] <= constants.SCREEN_WIDTH / 2 + 100 and mouse[1] >= constants.SCREEN_HEIGHT / 2 - 50 and mouse[1] <= constants.SCREEN_HEIGHT / 2 + 50:
-        whats_going_on = 'game'
+    
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if play_button.checkForInput(mouse_pos) == True:
+                    screen.fill('#2e6585')
+                    play_button.draw(screen)
+                    options_button.draw(screen)
+                    quit_button.draw(screen)
+        
 
 def game(screen):
 
