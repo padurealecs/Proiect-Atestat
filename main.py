@@ -69,6 +69,8 @@ def options(screen):
     global whats_going_on
     global mouse_is_pressed
     
+    screen.fill('#2e6585')
+    
     mouse_pos = pygame.mouse.get_pos()
     
     color1_img = pygame.image.load("Buttons/color1.png").convert_alpha()
@@ -76,6 +78,9 @@ def options(screen):
     
     color1_button = buttons.Button(200, 325, color1_img, 5)
     color2_button = buttons.Button(570, 325, color2_img, 5)
+    
+    color1_button.draw(screen)
+    color2_button.draw(screen)
 
 
 
@@ -83,6 +88,8 @@ def options(screen):
 def play(screen):
     global whats_going_on
     global mouse_is_pressed
+    
+    screen.fill('#2e6585')
     
     mouse_pos = pygame.mouse.get_pos()
     
@@ -110,8 +117,21 @@ def play(screen):
     level9_button = buttons.Button(720, 420, level9_img, 3)
     level10_button = buttons.Button(920, 420, level10_img, 3)
     
+    levels_button.draw(screen)
+    level1_button.draw(screen)
+    level2_button.draw(screen)
+    level3_button.draw(screen)
+    level4_button.draw(screen)
+    level5_button.draw(screen)
+    level6_button.draw(screen)
+    level7_button.draw(screen)
+    level8_button.draw(screen)
+    level9_button.draw(screen)
+    level10_button.draw(screen)
     
- 
+    
+def quit():
+    pygame.quit()
 
 def main_menu(screen):
     
@@ -132,7 +152,6 @@ def main_menu(screen):
 
     mouse = pygame.mouse.get_pos()
     
-    
     play_button.draw(screen)
     options_button.draw(screen)
     quit_button.draw(screen)
@@ -140,10 +159,13 @@ def main_menu(screen):
     if mouse_is_pressed == True:
         if play_button.checkForInput(mouse_pos) == True:
             play(screen)
+            whats_going_on = 'play'
         if options_button.checkForInput(mouse_pos) == True:
-            options(screen)
+            options(screen) 
+            whats_going_on = 'options'
         if quit_button.checkForInput(mouse) == True:
-            pygame.quit()
+            quit()
+            whats_going_on = 'quit'
         
 
 def game(screen):
@@ -206,6 +228,7 @@ def main():
     #make game loop
     running = True
     while running:
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -222,6 +245,15 @@ def main():
 
         if whats_going_on == 'main_menu':
             main_menu(screen)
+            
+        if whats_going_on == 'play':
+            play(screen)
+        
+        if whats_going_on == 'options':
+            options(screen)
+        
+        if whats_going_on == 'quit':
+            quit()
 
         elif whats_going_on == 'game':
 
