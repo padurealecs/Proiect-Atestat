@@ -65,6 +65,54 @@ def configure_graph():
         print(i.index, nbors[i.index])
 
 
+def options(screen):
+    global whats_going_on
+    global mouse_is_pressed
+    
+    mouse_pos = pygame.mouse.get_pos()
+    
+    color1_img = pygame.image.load("Buttons/color1.png").convert_alpha()
+    color2_img = pygame.image.load("Buttons/color2.png").convert_alpha()
+    
+    color1_button = buttons.Button(200, 325, color1_img, 5)
+    color2_button = buttons.Button(570, 325, color2_img, 5)
+
+
+
+
+def play(screen):
+    global whats_going_on
+    global mouse_is_pressed
+    
+    mouse_pos = pygame.mouse.get_pos()
+    
+    levels_img = pygame.image.load("Buttons/levels.png").convert_alpha()
+    level1_img = pygame.image.load("Levels/level1.png").convert_alpha()
+    level2_img = pygame.image.load("Levels/level2.png").convert_alpha()
+    level3_img = pygame.image.load("Levels/level3.png").convert_alpha()
+    level4_img = pygame.image.load("Levels/level4.png").convert_alpha()
+    level5_img = pygame.image.load("Levels/level5.png").convert_alpha()
+    level6_img = pygame.image.load("Levels/level6.png").convert_alpha()
+    level7_img = pygame.image.load("Levels/level7.png").convert_alpha()
+    level8_img = pygame.image.load("Levels/level8.png").convert_alpha()
+    level9_img = pygame.image.load("Levels/level9.png").convert_alpha()
+    level10_img = pygame.image.load("Levels/level10.png").convert_alpha()
+    
+    levels_button = buttons.Button(20, 90, levels_img, 5)
+    level1_button = buttons.Button(120, 300, level1_img, 3)
+    level2_button = buttons.Button(320, 300, level2_img, 3)
+    level3_button = buttons.Button(520, 300, level3_img, 3)
+    level4_button = buttons.Button(720, 300, level4_img, 3)
+    level5_button = buttons.Button(920, 300, level5_img, 3)
+    level6_button = buttons.Button(120, 420, level6_img, 3)
+    level7_button = buttons.Button(320, 420, level7_img, 3)
+    level8_button = buttons.Button(520, 420, level8_img, 3)
+    level9_button = buttons.Button(720, 420, level9_img, 3)
+    level10_button = buttons.Button(920, 420, level10_img, 3)
+    
+    
+ 
+
 def main_menu(screen):
     
     global whats_going_on
@@ -84,13 +132,18 @@ def main_menu(screen):
 
     mouse = pygame.mouse.get_pos()
     
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if play_button.checkForInput(mouse_pos) == True:
-                    screen.fill('#2e6585')
-                    play_button.draw(screen)
-                    options_button.draw(screen)
-                    quit_button.draw(screen)
+    
+    play_button.draw(screen)
+    options_button.draw(screen)
+    quit_button.draw(screen)
+    
+    if mouse_is_pressed == True:
+        if play_button.checkForInput(mouse_pos) == True:
+            play(screen)
+        if options_button.checkForInput(mouse_pos) == True:
+            options(screen)
+        if quit_button.checkForInput(mouse) == True:
+            pygame.quit()
         
 
 def game(screen):
