@@ -76,10 +76,23 @@ def options(screen):
     color1_img = pygame.image.load("Buttons/color1.png").convert_alpha()
     color2_img = pygame.image.load("Buttons/color2.png").convert_alpha()
     back_img = pygame.image.load("Buttons/back.png").convert_alpha()
+    blue_color_img = pygame.image.load("Color_Options/blue_color.png").convert_alpha()
+    brown_color_img = pygame.image.load("Color_Options/brown_color.png").convert_alpha()
+    green_color_img = pygame.image.load("Color_Options/green_color.png").convert_alpha()
+    pink_color_img = pygame.image.load("Color_Options/pink_color.png").convert_alpha()
+    purple_color_img = pygame.image.load("Color_Options/purple_color.png").convert_alpha()
+    red_color_img = pygame.image.load("Color_Options/red_color.png").convert_alpha()
+    yellow_color_img = pygame.image.load("Color_Options/yellow_color.png").convert_alpha()
     
     color1_button = buttons.Button(200, 325, color1_img, 5)
     color2_button = buttons.Button(570, 325, color2_img, 5)
     back_button = buttons.Button(1000,750, back_img, 3)
+    blue_button = buttons.Button(300, 425, blue_color_img, 5)
+    brown_color_button = buttons.Button()
+    pink_color_button = buttons.Button()
+    purple_color_button = buttons.Button()
+    red_color_button = buttons.Button()
+    yellow_color_button = buttons.Button()
     
     color1_button.draw(screen)
     color2_button.draw(screen)
@@ -89,6 +102,9 @@ def options(screen):
         if back_button.checkForInput(mouse_pos) == True:
             main_menu(screen)
             whats_going_on = 'main_menu'
+    
+    if color1_button.checkForInput(mouse_pos) == True:
+            blue_button.draw(screen)
     
 def play(screen):
     global whats_going_on
