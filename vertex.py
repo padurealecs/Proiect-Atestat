@@ -3,7 +3,7 @@ import pygame
 
 def draw_base_line(screen):
 
-    pygame.draw.line(screen, '#777777', (0, 50), (1200, 50), 2)
+    pygame.draw.line(screen, '#777777', (0, constants.SCREEN_HEIGHT - 50), (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT - 50), 2)
 
 class Vertex:
     
@@ -12,6 +12,8 @@ class Vertex:
         #absolute position
         self.x = x
         self.y = y
+        self.vel = 0
+
 
         #index used to identify the vertex in the graph
         self.index = 0
@@ -24,10 +26,8 @@ class Vertex:
 
     #draws the vertex on the screen
     def draw_vertex(self, screen):
-        if self.grounded:
-            pygame.draw.circle(screen, '#009500', (self.x, self.y), constants.vertex_radius + 3)
-        else:
-            pygame.draw.circle(screen, constants.vertex_color, (self.x, self.y), constants.vertex_radius)
+        
+        pygame.draw.circle(screen, constants.vertex_color, (self.x, constants.SCREEN_HEIGHT - self.y), constants.vertex_radius)
 
     def write():
         print(constants.SCREEN_HEIGHT, constants.SCREEN_WIDTH)

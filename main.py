@@ -19,6 +19,41 @@ whats_going_on = 'main_menu'
 color1 = 'red'
 color2 = 'blue'
 
+def update_graph():
+
+    for v in vertices:
+        if v.y == 50:
+            v.grounded = True
+        else:
+            v.grounded = False
+
+    visited = {x : False for x in vertices}
+    q = []
+    
+    for v in vertices:
+        if v.grounded:
+            q.append(v)
+            visited[v] = True
+
+    while(len(q) != 0):
+        cur = q[0]
+
+        for nbor in nbors[cur.index]:
+            if not visited[nbor]:
+                q.append(nbor)
+                visited[nbor] = True
+        q.pop(0)
+
+    for v in vertices:
+        if visited[v]:
+            v.grounded = True
+
+    for v in vertices:
+        if not v.grounded:
+            v.vel += constants.accel
+            v.y += v.vel
+
+
 def configure_random_graph():
 
     global vertices
@@ -44,6 +79,7 @@ def configure_random_graph():
 def configure_graph():
     global vertices
     global edges
+    global nbors
 
     vertices = []
     edges = []
@@ -202,8 +238,11 @@ def play(screen):
 
     if mouse_is_pressed == True:
         if back_button.checkForInput(mouse_pos) == True:
-            main_menu(screen)
+            
             whats_going_on = 'main_menu'
+        
+        if level1_button.checkForInput(mouse_pos):
+            whats_going_on = 'game'
 
 
 
@@ -248,6 +287,8 @@ def main_menu(screen):
 
 def game(screen):
 
+    update_graph()
+
     #draw base line
     draw_base_line(screen)
 
@@ -273,10 +314,9 @@ def game(screen):
 
                 if mouse_is_pressed:
                     edges.remove(edge)
-                    #!!REMOVE FROM ADJACENDY LIST
-
-                #remove the edge (EXPERIMENTAL)
-                #edges.remove(edge)
+                    
+                    nbors[edge.tip.index].remove(edge.base)
+                    nbors[edge.base.index].remove(edge.tip)
 
             edge_hovered = True
 

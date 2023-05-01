@@ -14,3 +14,6 @@ vertex_color = '#f5f2e9'
 edge_width = 6
 highlight_width = 12
 tint_percentage = 0.75 #75%
+
+#gravitational acceleration
+accel = 0.25
