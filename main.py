@@ -178,10 +178,10 @@ def options(screen):
                 color2 = x
 
     for x in list_of_colors:
-        if not x == color2:
+        if not x == color1:
             color2_button[x].draw(screen)
 
-        if not x == color1:
+        if not x == color2:
             color1_button[x].draw(screen)
 
 
