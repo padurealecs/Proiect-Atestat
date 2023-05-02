@@ -19,6 +19,8 @@ whats_going_on = 'main_menu'
 color1 = 'red'
 color2 = 'blue'
 
+turn = 1
+
 def update_graph():
 
     for v in vertices:
@@ -267,6 +269,7 @@ def main_menu(screen):
 
 
 def game(screen):
+    global turn
 
     update_graph()
 
@@ -294,10 +297,14 @@ def game(screen):
                 edge.draw_edge(screen)
 
                 if mouse_is_pressed:
-                    edges.remove(edge)
-                    
-                    nbors[edge.tip.index].remove(edge.base)
-                    nbors[edge.base.index].remove(edge.tip)
+                    if (edge.color == constants.colors[color1] and turn == 1) or (edge.color == constants.colors[color2] and turn == 2):
+                            
+                        edges.remove(edge)
+                        
+                        nbors[edge.tip.index].remove(edge.base)
+                        nbors[edge.base.index].remove(edge.tip)
+                        
+                        turn = 3 - turn
 
             edge_hovered = True
 

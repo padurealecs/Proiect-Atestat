@@ -6,7 +6,7 @@ SCREEN_HEIGHT = 800
 FPS = 60
 
 #colors
-colors = {'red':'#ff0000', 'blue':'#0000ff'}
+colors = {'red':'#ff0000', 'blue':'#0000ff', 'pink':'#ed85c9', 'green':'#00ff00', 'yellow':'#ffff00', 'brown':'#502818', 'orange':'#e8921a', 'purple':'#9100eb'}
 
 # vertex properties
 vertex_radius = 7
