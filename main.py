@@ -54,28 +54,6 @@ def update_graph():
             v.y += v.vel
 
 
-def configure_random_graph():
-
-    global vertices
-    global edges
-
-    vertices = []
-    edges = []
-
-
-    for i in range(10):
-        vertices.append(Vertex(random.randint(20, 1200), random.randint(0, 900)))
-
-    for i in range(20):
-
-        r1 = random.randint(1, 9)
-        r2 = random.randint(0, r1 - 1)
-        rand_num = random.randint(1118481,16777215)
-        rand_hex = '#' + str(hex(rand_num))[2:]
-        edges.append(Edge(vertices[r1], vertices[r2], rand_hex))
-        print(rand_hex)
-
-
 def configure_graph():
     global vertices
     global edges
@@ -96,7 +74,13 @@ def configure_graph():
         v1 = vertices[e[0]]
         v2 = vertices[e[1]]
 
-        edges.append(Edge(v1, v2, e[2]))
+        if e[2] == 1:
+            edges.append(Edge(v1, v2, constants.colors[color1]))
+        if e[2] == 2:
+            edges.append(Edge(v1, v2, constants.colors[color2]))
+
+
+        #edges.append(Edge(v1, v2, e[2]))
 
         nbors[v1.index].append(v2)
         nbors[v2.index].append(v1)
@@ -352,7 +336,8 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_is_pressed = True
-                print("hatz")
+                
+                
 
 
         #clear screen

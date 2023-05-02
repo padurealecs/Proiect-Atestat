@@ -1,10 +1,12 @@
 # windows properties
 SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 900
+SCREEN_HEIGHT = 800
 
 #framerate
 FPS = 60
 
+#colors
+colors = {'red':'#ff0000', 'blue':'#0000ff'}
 
 # vertex properties
 vertex_radius = 7
