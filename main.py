@@ -275,13 +275,10 @@ def main_menu(screen):
 
     if mouse_is_pressed == True:
         if play_button.checkForInput(mouse_pos) == True:
-            play(screen)
             whats_going_on = 'play'
         if options_button.checkForInput(mouse_pos) == True:
-            options(screen)
             whats_going_on = 'options'
         if quit_button.checkForInput(mouse) == True:
-            quit()
             whats_going_on = 'quit'
 
 
