@@ -50,6 +50,15 @@ def update_graph():
         if visited[v]:
             v.grounded = True
 
+
+    for e in edges:
+        e.grounded = False
+    for v in vertices:
+        if v.grounded:
+            for e in edges:
+                if e.base == v or e.tip == v:
+                    e.grounded = True
+
     for v in vertices:
         if not v.grounded:
             v.vel += constants.accel
@@ -270,6 +279,7 @@ def main_menu(screen):
 
 def game(screen):
     global turn
+    global whats_going_on
 
     update_graph()
 
@@ -316,7 +326,32 @@ def game(screen):
     for v in vertices:
         v.draw_vertex(screen)
 
+    w = check_win()
+    if w == 1:
+        print("Player 1 wins!")
+    if w == 2:
+        print("Player 2 wins!")
 
+
+def check_win():
+    global vertices
+    global edges
+
+    exists_col_1 = False
+    exists_col_2 = False
+
+    for edge in edges:
+        if edge.grounded:
+            if edge.color == constants.colors[color1]:
+                exists_col_1 = True
+            if edge.color == constants.colors[color2]:
+                exists_col_2 = True
+
+    if exists_col_1 and (not exists_col_2):
+        return 1
+    if exists_col_2 and (not exists_col_1):
+        return 2
+    return 0
 
 
 def main():

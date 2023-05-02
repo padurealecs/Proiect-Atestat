@@ -10,6 +10,8 @@ class Edge:
 
         self.color = color
 
+        self.grounded = False
+
     def draw_edge(self, screen):
         pygame.draw.line(screen, self.color, (self.base.x, constants.SCREEN_HEIGHT - self.base.y), (self.tip.x, constants.SCREEN_HEIGHT - self.tip.y), constants.edge_width)
 
