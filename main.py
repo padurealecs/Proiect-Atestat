@@ -3,7 +3,6 @@ from vertex import *
 from edge import *
 import constants
 import presets.graph
-import random
 import buttons
 
 #global variables
@@ -21,6 +20,7 @@ color2 = 'blue'
 
 turn = 1
 loaded_level = 1
+winner = 0
 
 def update_graph():
 
@@ -310,6 +310,8 @@ def main_menu(screen):
 def game(screen):
     global turn
     global whats_going_on
+    global winner
+    global graph_configured
 
     update_graph()
 
@@ -356,11 +358,86 @@ def game(screen):
     for v in vertices:
         v.draw_vertex(screen)
 
-    w = check_win()
-    if w == 1:
-        print("Player 1 wins!")
-    if w == 2:
-        print("Player 2 wins!")
+
+    if winner == 0:
+        winner = check_win()
+
+    if winner == 1:
+        if color1 == 'red':
+            win1_red = pygame.image.load("Win_PopUp/win1_red.png").convert_alpha()
+            win1_red = pygame.transform.scale(win1_red, (400, 60))
+            screen.blit(win1_red, (420, 50))
+        if color1 == 'blue':
+            win1_blue = pygame.image.load("Win_PopUp/win1_blue.png").convert_alpha()
+            win1_blue = pygame.transform.scale(win1_blue, (400, 60))
+            screen.blit(win1_blue, (420, 50))
+        if color1 == 'pink':
+            win1_pink = pygame.image.load("Win_PopUp/win1_pink.png").convert_alpha()
+            win1_pink = pygame.transform.scale(win1_pink, (400, 60))
+            screen.blit(win1_pink, (420, 50))
+        if color1 == 'orange':
+            win1_orange = pygame.image.load("Win_PopUp/win1_orange.png").convert_alpha()
+            win1_orange = pygame.transform.scale(win1_orange, (400, 60))
+            screen.blit(win1_orange, (420, 50))
+        if color1 == 'yellow':
+            win1_yellow = pygame.image.load("Win_PopUp/win1_yellow.png").convert_alpha()
+            win1_yellow = pygame.transform.scale(win1_yellow, (400, 60))
+            screen.blit(win1_yellow, (420, 50))
+        if color1 == 'brown':
+            win1_brown = pygame.image.load("Win_PopUp/win1_brown.png").convert_alpha()
+            win1_brown = pygame.transform.scale(win1_brown, (400, 60))
+            screen.blit(win1_brown, (420, 50))
+        if color1 == 'purple':
+            win1_purple = pygame.image.load("Win_PopUp/win1_purple.png").convert_alpha()
+            win1_purple = pygame.transform.scale(win1_purple, (400, 60))
+            screen.blit(win1_purple, (420, 50))
+        if color1 == 'green':
+            win1_green = pygame.image.load("Win_PopUp/win1_green.png").convert_alpha()
+            win1_green = pygame.transform.scale(win1_green, (400, 60))
+            screen.blit(win1_green, (420, 50))
+    if winner == 2:
+        if color2 == 'red':
+            win2_red = pygame.image.load("Win_PopUp/win2_red.png").convert_alpha()
+            win2_red = pygame.transform.scale(win2_red, (400, 60))
+            screen.blit(win2_red, (420, 50))
+        if color2 == 'blue':
+            win2_blue = pygame.image.load("Win_PopUp/win2_blue.png").convert_alpha()
+            win2_blue = pygame.transform.scale(win2_blue, (400, 60))
+            screen.blit(win2_blue, (420, 50))
+        if color2 == 'pink':
+            win2_pink = pygame.image.load("Win_PopUp/win2_pink.png").convert_alpha()
+            win2_pink = pygame.transform.scale(win2_pink, (400, 60))
+            screen.blit(win2_pink, (420, 50))
+        if color2 == 'orange':
+            win2_orange = pygame.image.load("Win_PopUp/win2_orange.png").convert_alpha()
+            win2_orange = pygame.transform.scale(win2_orange, (400, 60))
+            screen.blit(win2_orange, (420, 50))
+        if color2 == 'yellow':
+            win2_yellow = pygame.image.load("Win_PopUp/win2_yellow.png").convert_alpha()
+            win2_yellow = pygame.transform.scale(win2_yellow, (400, 60))
+            screen.blit(win2_yellow, (420, 50))
+        if color2 == 'brown':
+            win2_brown = pygame.image.load("Win_PopUp/win2_brown.png").convert_alpha()
+            win2_brown = pygame.transform.scale(win2_brown, (400, 60))
+            screen.blit(win2_brown, (420, 50))
+        if color2 == 'purple':
+            win2_purple = pygame.image.load("Win_PopUp/win2_purple.png").convert_alpha()
+            win2_purple = pygame.transform.scale(win2_purple, (400, 60))
+            screen.blit(win2_purple, (420, 50))
+        if color2 == 'green':
+            win2_green = pygame.image.load("Win_PopUp/win2_green.png").convert_alpha()
+            win2_green = pygame.transform.scale(win2_green, (400, 60))
+            screen.blit(win2_green, (420, 50))
+
+    back_img = pygame.image.load("Buttons/back.png").convert_alpha()
+    back_button = buttons.Button(1000,750, back_img, 3)
+    back_button.draw(screen)
+    mouse_pos = pygame.mouse.get_pos()
+    if back_button.checkForInput(mouse_pos) and mouse_is_pressed:
+        whats_going_on = 'play'
+        graph_configured = False
+        winner = 0
+        turn = 1
 
 
 def check_win():
@@ -377,10 +454,10 @@ def check_win():
             if edge.color == constants.colors[color2]:
                 exists_col_2 = True
 
-    if exists_col_1 and (not exists_col_2):
-        return 1
-    if exists_col_2 and (not exists_col_1):
+    if turn == 1 and (not exists_col_1):
         return 2
+    if turn == 2 and (not exists_col_2):
+        return 1
     return 0
 
 
