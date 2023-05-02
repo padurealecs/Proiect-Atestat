@@ -20,6 +20,7 @@ color1 = 'red'
 color2 = 'blue'
 
 turn = 1
+loaded_level = 1
 
 def update_graph():
 
@@ -65,7 +66,7 @@ def update_graph():
             v.y += v.vel
 
 
-def configure_graph():
+def configure_graph(level):
     global vertices
     global edges
     global nbors
@@ -74,14 +75,14 @@ def configure_graph():
     edges = []
 
     indexx = 0
-    for v in presets.graph.graph_v:
+    for v in presets.graph.graph_v[level]:
         vertices.append(Vertex(v[0], v[1]))
         vertices[indexx].index = indexx
         indexx += 1
 
     nbors = [[] for v in vertices]
 
-    for e in presets.graph.graph_e:
+    for e in presets.graph.graph_e[level]:
         v1 = vertices[e[0]]
         v2 = vertices[e[1]]
 
@@ -187,6 +188,7 @@ def options(screen):
 def play(screen):
     global whats_going_on
     global mouse_is_pressed
+    global loaded_level
 
     screen.fill('#2e6585')
 
@@ -237,6 +239,34 @@ def play(screen):
             whats_going_on = 'main_menu'
         
         if level1_button.checkForInput(mouse_pos):
+            loaded_level = 1
+            whats_going_on = 'game'
+        if level2_button.checkForInput(mouse_pos):
+            loaded_level = 2
+            whats_going_on = 'game'
+        if level3_button.checkForInput(mouse_pos):
+            loaded_level = 3
+            whats_going_on = 'game'
+        if level4_button.checkForInput(mouse_pos):
+            loaded_level = 4
+            whats_going_on = 'game'
+        if level5_button.checkForInput(mouse_pos):
+            loaded_level = 5
+            whats_going_on = 'game'
+        if level6_button.checkForInput(mouse_pos):
+            loaded_level = 6
+            whats_going_on = 'game'
+        if level7_button.checkForInput(mouse_pos):
+            loaded_level = 7
+            whats_going_on = 'game'
+        if level8_button.checkForInput(mouse_pos):
+            loaded_level = 8
+            whats_going_on = 'game'
+        if level9_button.checkForInput(mouse_pos):
+            loaded_level = 9
+            whats_going_on = 'game'
+        if level10_button.checkForInput(mouse_pos):
+            loaded_level = 10
             whats_going_on = 'game'
 
 
@@ -404,7 +434,7 @@ def main():
             #configure graph if necessary (when opening a new game)
             #print(graph_configured) !REMOVE THIS
             if not graph_configured:
-                configure_graph()
+                configure_graph(loaded_level)
                 graph_configured = True
 
             game(screen)
