@@ -173,9 +173,9 @@ def options(screen):
 
         for x in list_of_colors:
             if color1_button[x].checkForInput(mouse_pos):
-                color2 = x
-            if color2_button[x].checkForInput(mouse_pos):
                 color1 = x
+            if color2_button[x].checkForInput(mouse_pos):
+                color2 = x
 
     for x in list_of_colors:
         if not x == color2:
